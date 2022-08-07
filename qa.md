@@ -1,4 +1,4 @@
-# c4-model
+# guanda-c4-model
 
 Q1: 目前無法再中央 Server 做有效的廠區監控連線？
 

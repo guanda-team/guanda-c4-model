@@ -16,11 +16,16 @@ Container_Boundary(machine_app, "機台軟體") {
     Component(project_sync_controller, "專案同步控制器", "C# and WPF", "負責將App端的使用者與ERP端的使用者進行身份驗證")
     Component(update_controller, "軟體更新控制器", "C# and WPF", "負責檢查軟體版本與更新軟體")
     Component(view_controller, "廠區監控控制器", "C# and WPF", "負責傳送與更新廠區的資料")
+    Component(work_controller, "加工監控控制器", "C# and WPF", "負責傳送與更新加工的資料")
 }
+
+Container(pac, "PAC", "C# and CodeSys", "包含了IIS Server與自動化控制")
 
 Rel(user, machine_app, "使用")
 
 Rel(central_server, project_sync_controller, "連線", "http")
 Rel(central_server, update_controller, "連線", "http")
 Rel(central_server, view_controller, "連線", "http")
+
+Rel(work_controller, pac, "連線", "http")
 @enduml

@@ -1,0 +1,7 @@
+{
+  "name": "guanda-c4-model",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "c4builder site"
+  }
+}

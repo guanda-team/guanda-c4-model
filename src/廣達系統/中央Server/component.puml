@@ -1,0 +1,33 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+System_Ext(app, "App", "iOS / Android App")
+System_Ext(erp, "ERP", "雲端的ERP系統 (SaaS)")
+
+Container_Boundary(central_server, "中央Server") {
+    Component(auth_controller, "身份驗證控制器", "Javascript and NodeJS", "負責將App端的使用者與ERP端的使用者進行身份驗證")
+    Component(project_sync_controller, "專案同步控制器", "Javascript and NodeJS", "負責同步專案資料")
+    Component(update_controller, "軟體更新控制器", "Javascript and NodeJS", "負責檢查軟體版本與更新軟體")
+    Component(view_controller, "廠區監控控制器", "Javascript and NodeJS", "負責傳送與更新廠區的資料")
+    Component(app_controller, "App控制器", "Javascript and NodeJS", "負責將來自App的指令轉發給App Server")
+}
+
+Container(office_app, "辦公室軟體", "C# and WPF", "辦公室中使用的桌面應用程式")
+Container(machine_app, "機台軟體", "C# and WPF", "機台上使用的桌面應用程式")
+Container(app_server, "App Server", "Javascript and NodeJS", "負責處理來自App的訊息以及儲存相對應的Session")
+
+Rel(erp, auth_controller, "連線", "http")
+Rel(erp, project_sync_controller, "連線", "http")
+Rel(app, auth_controller, "連線", "http")
+Rel(app, app_controller, "連線", "http")
+
+Rel(project_sync_controller, office_app, "連線", "http")
+Rel(update_controller, office_app, "連線", "http")
+Rel(view_controller, office_app, "連線", "http")
+Rel(project_sync_controller, machine_app, "連線", "http")
+Rel(update_controller, machine_app, "連線", "http")
+Rel(view_controller, machine_app, "連線", "http")
+Rel(app_controller, app_server, "連線", "http")
+@enduml

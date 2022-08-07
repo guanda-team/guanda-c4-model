@@ -1,0 +1,18 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Container(central_server, "中央Server", "Javascript and NodeJS", "負責同步資料的中央Server")
+
+Container_Boundary(app_server, "App Server") {
+    Component(auth_controller, "身份驗證控制器", "Javascript and NodeJS", "負責將來自ERP的token進行驗證")
+    Component(app_command_controller, "App指令控制器", "Javascript and NodeJS", "負責將來自中央Server的App指令進行處理並透過IIS送至自動化控制")
+}
+
+Container(pac, "PAC", "C# and CodeSys", "包含了IIS Server與自動化控制")
+
+Rel(central_server, auth_controller, "連線", "http")
+Rel(central_server, app_command_controller, "連線", "http")
+Rel(app_command_controller, pac, "連線", "http")
+@enduml

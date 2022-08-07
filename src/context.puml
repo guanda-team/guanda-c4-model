@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "系統使用者", "廣達客戶")
+
+System_Ext(app, "App", "iOS / Android App")
+System_Ext(erp, "ERP", "雲端的ERP系統 (SaaS)")
+System(sys, "廣達系統", "廣達軟體服務")
+System_Ext(machine, "機台", "各種機台 (三軸、鋼印、雷雕)")
+
+Rel(user, sys, "使用")
+Rel(user, app, "使用")
+Rel(user, erp, "使用")
+Rel(erp, sys, "連線", "http")
+Rel(app, sys, "連線", "http")
+Rel(sys, machine, "操作")
+@enduml

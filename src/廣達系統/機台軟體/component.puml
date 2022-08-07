@@ -1,0 +1,26 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "系統使用者", "廣達客戶")
+
+Container(central_server, "中央Server", "Javascript and NodeJS", "負責同步資料的中央Server")
+
+Container_Boundary(machine_app, "機台軟體") {
+    Component(project_controller, "專案控制器", "C# and WPF", "負責專案的讀取寫入以及檔案格式控管")
+    Component(parts_controller, "製品設定控制器", "C# and WPF", "針對製品設定的新建、修改、刪除，以及鑽孔、切割線的設定")
+    Component(stock_cutting_controller, "自動排版控制器", "C# and WPF", "自動排版的控制器")
+    Component(project_sync_controller, "參數設定控制器", "C# and WPF", "負責儲存與讀取參數設定的控制器")
+    Component(printer_controller, "貼紙機控制器", "C# and WPF", "負責貼紙機列印的控制器")
+    Component(project_sync_controller, "專案同步控制器", "C# and WPF", "負責將App端的使用者與ERP端的使用者進行身份驗證")
+    Component(update_controller, "軟體更新控制器", "C# and WPF", "負責檢查軟體版本與更新軟體")
+    Component(view_controller, "廠區監控控制器", "C# and WPF", "負責傳送與更新廠區的資料")
+}
+
+Rel(user, machine_app, "使用")
+
+Rel(central_server, project_sync_controller, "連線", "http")
+Rel(central_server, update_controller, "連線", "http")
+Rel(central_server, view_controller, "連線", "http")
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "系統使用者", "廣達客戶")
+
+System_Ext(app, "App", "iOS / Android App")
+System_Ext(erp, "ERP", "雲端的ERP系統 (SaaS)")
+System_Boundary(sys, "廣達系統") {
+    Container(office_app, "辦公室軟體", "C# and WPF", "辦公室中使用的桌面應用程式")
+    
+    
+    System_Boundary(ipc_machine_center, "IPC") {
+        Container(central_server, "中央Server", "Javascript and NodeJS", "負責同步資料的中央Server")
+    }
+
+    System_Boundary(ipc_machine, "IPC") {
+        Container(machine_app, "機台軟體", "C# and WPF", "機台上使用的桌面應用程式")
+        Container(app_server, "App Server", "Javascript and NodeJS", "負責處理來自App的訊息以及儲存相對應的Session")
+    }
+
+    System_Boundary(pac_machine, "PAC") {
+        Container(pac, "PAC", "C# and CodeSys", "包含了IIS Server與自動化控制")
+    }
+
+    Rel(central_server, office_app, "連線", "http")
+    Rel(central_server, machine_app, "連線", "http")
+    Rel(central_server, app_server, "連線", "http")
+    Rel(machine_app, pac, "連線", "http")
+    Rel(app_server, pac, "連線", "http")
+}
+System_Ext(machine, "機台", "各種機台 (三軸、鋼印、雷雕)")
+
+Rel(user, machine_app, "使用")
+Rel(user, office_app, "使用")
+Rel(erp, central_server, "連線", "http")
+Rel(app, central_server, "連線", "http")
+Rel(pac, machine, "操作")
+@enduml

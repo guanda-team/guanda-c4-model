@@ -1,7 +1,7 @@
 {
 	"plantumlVersion": "latest",
-	"projectName": "廣達軟體系統架構",
-	"homepageName": "系統總覽",
+	"projectName": "廣達軟體文件",
+	"homepageName": "文件總覽",
 	"rootFolder": "src",
 	"distFolder": "docs",
 	"generateMD": false,
@@ -12,7 +12,7 @@
 	"webTheme": "//unpkg.com/docsify/lib/themes/vue.css",
 	"supportSearch": true,
 	"repoUrl": "",
-	"docsifyTemplate": "",
+	"docsifyTemplate": "template.js",
 	"webPort": "3000",
 	"pdfCss": "/usr/local/lib/node_modules/c4builder/pdf.css",
 	"includeBreadcrumbs": true,

@@ -14,7 +14,10 @@ module.exports = (options) => {
   <body>
     <div id="app"></div>
     <script>
-      window.$docsify = ${JSON.stringify(options)};
+      window.$docsify = {
+        ...${JSON.stringify(options)},
+        sidebarDisplayLevel: 2
+      };
     </script>
 
     <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
@@ -32,6 +35,13 @@ module.exports = (options) => {
     <script src="//unpkg.com/mermaid/dist/mermaid.js"></script>
     <script src="//unpkg.com/docsify-mermaid@latest/dist/docsify-mermaid.js"></script>
     <script>mermaid.initialize({ startOnLoad: true });</script>
+
+    <!-- sidebar-collapse -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+
+    <!-- swagger -->
+    <script src="//unpkg.com/docsify-swagger/dist/docsify-swagger.min.js"></script>
   </body>
 </html>`;
 };

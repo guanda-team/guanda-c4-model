@@ -1,8 +1,4 @@
-```mermaid
-graph
-  A --> B
-```
-
-[swagger](http://petstore.swagger.io/v2/swagger.json)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_6dDUIFKj2c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+| 類別     | 項目     | 錯誤內容               | 僅需提示 | 需列錯誤碼 | 無法被規範 |
+| -------- | -------- | ---------------------- | -------- | ---------- | ---------- |
+| 專案管理 | 新增專案 | 硬碟已滿，無法新增專案 |          | O          |            |
+| 專案管理 | 新增專案 | 新增專案出現不明錯誤   |          |            | O          |

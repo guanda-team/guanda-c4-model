@@ -14,10 +14,8 @@ Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "bom_content": "string",
-  "nc_content": [
-    "string"
-  ]
+  "bom_content": string,
+  "nc_content": Array<string>
 }
 ```
 
@@ -25,21 +23,39 @@ Content-Type: application/json
 
 ```http
 {
+  "assemblyTemplates": [
+    {
+      "name": string,
+      "partTemplates: [
+        {
+          "name": string,
+          "count": number,
+        }
+      ]
+    }
+  ],
+  "partTemplates": [
+    {
+      "name": string,
+      "specification": string,
+      "length": number,
+      "material": string,
+      "ac": string?,
+      "bo": string?,
+    }
+  ],
   "assmeblys": [
     {
       "id": "string",
-      "name": "string",
-      "count": 10,
+      "name": string,
       "parts": [
         {
           "id": "string",
-          "name": "string",
-          "count": 10,
-          "specification": "string",
-          "length": 1000,
-          "material": "string",
-          "ac": "string",
-          "bo": "string",
+          "name": string,
+        },
+        {
+          "id": "string",
+          "name": string,
         }
       ]
     }
@@ -49,38 +65,51 @@ Content-Type: application/json
 
 ### 🔶 Request Body
 
-| name        | type       | desc                      |
-| ----------- | ---------- | ------------------------- |
-| bom_content | `string`   | BOM 表內容                |
-| nc_content  | `string[]` | NC 檔內容，為一個字串陣列 |
+| name        | type            | desc                      |
+| ----------- | --------------- | ------------------------- |
+| bom_content | `string`        | BOM 表內容                |
+| nc_content  | `Array<string>` | NC 檔內容，為一個字串陣列 |
 
 ### 🔶 Response Body
 
-| name      | type         | desc     |
-| --------- | ------------ | -------- |
-| assmeblys | `Assmebly[]` | 構建陣列 |
+| name              | type                 | desc         |
+| ----------------- | -------------------- | ------------ |
+| assemblyTemplates | `AssmeblyTemplate[]` | 構件樣板陣列 |
+| partTemplates     | `PartTemplate[]`     | 零件樣板陣列 |
+| assmeblys         | `Assmebly[]`         | 構件陣列     |
+
+### 🔶 AssmeblyTemplate
+
+| name          | type                                   | desc         |
+| ------------- | -------------------------------------- | ------------ |
+| name          | `string`                               | 構件編號     |
+| partTemplates | `Array<{name: string; count: number}>` | 零件樣板陣列 |
+
+### 🔶 PartTemplate
+
+| name          | type      | desc       |
+| ------------- | --------- | ---------- |
+| name          | `string`  | 零件編號   |
+| specification | `string`  | 斷面規格   |
+| length        | `number`  | 長度       |
+| material      | `string`  | 材質       |
+| ac            | `string?` | 外輪廓描述 |
+| bo            | `string?` | 孔群描述   |
 
 ### 🔶 Assmebly
 
 | name  | type     | desc     |
 | ----- | -------- | -------- |
 | id    | `string` | GUID     |
-| name  | `string` | 構建編號 |
-| count | `number` | 構建數量 |
+| name  | `string` | 構件編號 |
 | parts | `Part[]` | 零件陣列 |
 
 ### 🔶 Part
 
-| name          | type      | desc       |
-| ------------- | --------- | ---------- |
-| id            | `string`  | GUID       |
-| name          | `string`  | 零件編號   |
-| count         | `number`  | 零件數量   |
-| specification | `string`  | 斷面規格   |
-| length        | `number`  | 長度       |
-| material      | `string`  | 材質       |
-| ac            | `string?` | 外輪廓描述 |
-| bo            | `string?` | 孔群描述   |
+| name | type     | desc     |
+| ---- | -------- | -------- |
+| id   | `string` | GUID     |
+| name | `string` | 零件編號 |
 
 ## 🔥 Api Flow
 

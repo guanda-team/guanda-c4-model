@@ -1,3 +1,5 @@
+# 轉檔
+
 ## 🔥 用途
 
 作為轉檔的微服務，將來自 Tekla 的 Bom 表與 NC 檔的資料，或自行開發的 XML 文件，轉換成相對應的格式。
@@ -7,13 +9,13 @@
 ### 🔶 Request Sample
 
 ```http
-POST /api/convertBomAndNc
+POST /api/projectConvertFromBomAndNc
 Authorization: Bearer <token>
 Content-Type: application/json
 
 {
-  "bom_content": string,
-  "nc_content": Array<string>
+  "bomContent": string,
+  "ncContent": Array<string>
 }
 ```
 
@@ -63,10 +65,10 @@ Content-Type: application/json
 
 ### 🔶 Request Body
 
-| name        | type            | desc                      |
-| ----------- | --------------- | ------------------------- |
-| bom_content | `string`        | BOM 表內容                |
-| nc_content  | `Array<string>` | NC 檔內容，為一個字串陣列 |
+| name       | type            | desc                      |
+| ---------- | --------------- | ------------------------- |
+| bomContent | `string`        | BOM 表內容                |
+| ncContent  | `Array<string>` | NC 檔內容，為一個字串陣列 |
 
 ### 🔶 Response Body
 

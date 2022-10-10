@@ -1,5 +1,6 @@
 * [文件總覽](HOME)
   * [流程圖](%E6%B5%81%E7%A8%8B%E5%9C%96/HOME)
+    * [AppServer新需求](%E6%B5%81%E7%A8%8B%E5%9C%96/AppServer%E6%96%B0%E9%9C%80%E6%B1%82/HOME)
     * [App與機台軟體互動](%E6%B5%81%E7%A8%8B%E5%9C%96/App%E8%88%87%E6%A9%9F%E5%8F%B0%E8%BB%9F%E9%AB%94%E4%BA%92%E5%8B%95/HOME)
     * [轉檔Server](%E6%B5%81%E7%A8%8B%E5%9C%96/%E8%BD%89%E6%AA%94Server/HOME)
   * [系統架構](%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B/HOME)

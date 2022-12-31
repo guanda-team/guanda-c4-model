@@ -1,61 +1,65 @@
-# 轉檔
+# 轉檔 CLI v1.0.0
 
 ## 🔥 用途
 
-作為轉檔的微服務，將來自 Tekla 的 Bom 表與 NC 檔的資料，或自行開發的 XML 文件，轉換成相對應的格式。
+作為轉檔的本地服務，將來自 Tekla 的 Bom 表與 NC 檔的資料，轉換成相對應的格式。
 
-## 🔥 Api
+## 🔥 版本
 
-### 🔶 Request Sample
+| 版本號 | 內容 |
+| ------ | ---- |
+| v1.0.0 |      |
 
-```http
-POST /api/projectConvertFromBomAndNc
-Authorization: Bearer <token>
-Content-Type: application/json
+## 🔥 Road Map
 
-{
-  "bomContent": string,
-  "ncContent": Array<string>
-}
+- 加入 Metrics、Logs、Metrics
+- 加入其他接頭
+
+## 🔥 CLI 文件
+
+### 🔶 Usage Sample
+
+```sh
+$ import-nc-bom --bom-file ./bom.csv --nc-dir ./nc --output-dir ./output
 ```
 
 ### 🔶 Response Sample
 
-```http
+```json
 {
   "assemblyTemplates": [
     {
-      "name": string,
-      "partTemplates: [
+      "name": "string",
+      "partTemplates": [
         {
-          "name": string,
-          "count": number,
+          "name": "string",
+          "count": "number"
         }
       ]
     }
   ],
   "partTemplates": [
     {
-      "name": string,
-      "specification": string,
-      "length": number,
-      "material": string,
-      "ac": string?,
-      "bo": string?,
+      "name": "string",
+      "specification": "string",
+      "length": "number",
+      "material": "string",
+      "ac": "string?",
+      "bo": "string?"
     }
   ],
   "assmeblys": [
     {
       "id": "string",
-      "name": string,
+      "name": "string",
       "parts": [
         {
           "id": "string",
-          "name": string,
+          "name": "string"
         },
         {
           "id": "string",
-          "name": string,
+          "name": "string"
         }
       ]
     }
@@ -65,10 +69,11 @@ Content-Type: application/json
 
 ### 🔶 Request Body
 
-| name       | type            | desc                      |
-| ---------- | --------------- | ------------------------- |
-| bomContent | `string`        | BOM 表內容                |
-| ncContent  | `Array<string>` | NC 檔內容，為一個字串陣列 |
+| name         | type     | desc            | example       |
+| ------------ | -------- | --------------- | ------------- |
+| --bom-file   | `string` | BOM 表檔案位置  | `"./bom.csv"` |
+| --nc-dir     | `string` | NC 檔資料夾位置 | `"./nc"`      |
+| --output-dir | `string` |                 | `"./"`        |
 
 ### 🔶 Response Body
 
